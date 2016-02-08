@@ -263,7 +263,8 @@ APP.Main = (function() {
     var mainPosition = main.getBoundingClientRect();
     var bodyTop = document.body.getBoundingClientRect().top;
 
-    for (var s = 0; s < storyElements.length; s++) {
+
+    for (var s = 0; s < storyElements.length ; s++) {
 
       var story = storyElements[s];
       var score = story.querySelector('.story__score');
@@ -284,6 +285,11 @@ APP.Main = (function() {
 
       score.style.backgroundColor = 'hsl(42, ' + saturation + '%, 50%)';
       title.style.opacity = opacity;
+
+      if (scoreLocation.top - bodyTop  > mainPosition.bottom) { 
+        s = storyElements.length; // force loop to exit when score is outside of main window (no need to colorize these elements)
+      }
+
     }
   }
 
